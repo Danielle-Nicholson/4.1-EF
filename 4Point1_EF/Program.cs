@@ -27,14 +27,11 @@ namespace _4Point1_EF
             // Initialize our database interaction (the context):
             using (CarsContext context = new CarsContext())
             {
-                string model, colour;
-                Console.Write("Please enter a model to change the colour: ");
+                string model;
+                Console.Write("Please enter a model to remove: ");
                 model = Console.ReadLine();
 
-                Console.Write("Please enter the new colour: ");
-                colour = Console.ReadLine();
-
-                context.Cars.Where(x => x.Model == model).SingleOrDefault().Colour = colour;
+                context.Cars.Remove(context.Cars.Where(x => x.Model == model).SingleOrDefault());
 
                 context.SaveChanges();
             }
