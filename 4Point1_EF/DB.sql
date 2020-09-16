@@ -54,6 +54,6 @@ VALUES
 (13, 'Roadster', 'Red'), -- Tesla
 (14, 'Defender', 'Black'), -- Land Rover
 (14, 'Range Rover', 'White'), -- Land Rover
-(15, 'R10', 'Pink'); -- Land Rover
+(15, 'R10', 'Pink'); -- Skoda
 
 
