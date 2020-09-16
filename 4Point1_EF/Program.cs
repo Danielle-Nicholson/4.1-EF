@@ -27,9 +27,24 @@ namespace _4Point1_EF
             // Initialize our database interaction (the context):
             using (CarsContext context = new CarsContext())
             {
-                Console.WriteLine(context.Cars.Count(x => x.Manufacturer.Name == "BMW"));
+                string make, model, colour;
 
-                Console.WriteLine(context.Cars.Count(x => x.Manufacturer.Name == "Mitsubishi"));
+                Console.Write("Please enter a Make for your new car: ");
+                make = Console.ReadLine();
+
+                Console.Write("Please enter a Model for your new car: ");
+                model = Console.ReadLine();
+
+                Console.Write("Please enter a Colour for your new car: ");
+                colour = Console.ReadLine();
+
+                context.Add(new Car() { 
+                    Manufacturer = context.Manufacturers.Where(x => x.Name == make).SingleOrDefault(),
+                    Model = model,
+                    Colour = colour
+                });
+
+                context.SaveChanges();
             }
 
         }
