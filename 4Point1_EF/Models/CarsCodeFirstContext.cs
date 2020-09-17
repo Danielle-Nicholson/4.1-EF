@@ -47,6 +47,24 @@ namespace _4Point1_EF.Models
         // Called when we're doing database migrations, etc.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Manufacturer>(entity =>
+            {
+            entity.Property(e => e.Name)
+                .HasCharSet("utf8mb4")
+                .HasCollation("utf8mb4_general_ci");
+
+            entity.HasData(
+                new Manufacturer() { ID = 1, Name = "Chevrolet", YearFounded = 1911},
+                new Manufacturer() { ID = 2, Name = "Ford", YearFounded = 1903 },
+                new Manufacturer() { ID = 3, Name = "Tesla", YearFounded = null },
+                new Manufacturer() { ID = 4, Name = "Dodge", YearFounded = null },
+                new Manufacturer() { ID = 5, Name = "Toyota", YearFounded = 1937 },
+                new Manufacturer() { ID = 6, Name = "Honda", YearFounded = 1946 },
+                new Manufacturer() { ID = 7, Name = "Mitsubishi", YearFounded = null },
+                new Manufacturer() { ID = 8, Name = "Nissan", YearFounded = null }
+                );
+            });
+
             // Declare advanced column configuration for our model.
             modelBuilder.Entity<CodeFirstCar>(entity =>
             {

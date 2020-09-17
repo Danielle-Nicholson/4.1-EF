@@ -25,8 +25,6 @@ namespace _4Point1_EF
                 -Nissan
              */
 
-
-
             // Using "Code First" techniques allow us to make changes and even create entire databases without writing a single line of SQL.
             /*
 
