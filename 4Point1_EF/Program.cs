@@ -33,6 +33,7 @@ namespace _4Point1_EF
             5) Modify context OnModelCreating to represent the models that you created.
                 5a) Add a modelBuild.Entity<MODEL_NAME>() call for each model that will set things like the foreign key mapping and the text encoding.
 
+            Migrations are used to keep the database in sync with the models. Whenever you change the context or models, a migration will likely be necessary.
 
             Generate the Migration:
             Run "dotnet ef migrations add InitialCreate" in package manager console.
@@ -43,7 +44,17 @@ namespace _4Point1_EF
             Assuming no errors, your database should now be there.
 
             If you make a mistake, you can remove and recreate your model:
-            Run "dotnet ef migrations remove"
+            Run "dotnet ef migrations remove".
+
+            To add a subsequent migration:
+            Run "dotnet ef migrations add FirstSeedData".
+            Run "dotnet ef database update".
+
+            To rollback a migration on the database:
+            Run "dotnet ef database update InitialCreate" (or the name of the target).
+
+            Ensure that the database has been rolled back to before the migration to be removed before removing it.
+
 
             */
         }

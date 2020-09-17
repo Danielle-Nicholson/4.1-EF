@@ -69,6 +69,39 @@ namespace _4Point1_EF.Models
                 entity.Property(e => e.Colour)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
+
+                // Seed data is used for testing environments, it's kind of the equivalent of what we did with INSERTing test data using SQL.
+                entity.HasData(
+                    new CodeFirstCar() { 
+                        ID = 1,
+                        Manufacturer = "Mitsubishi",
+                        Model = "Lancer",
+                        TrimLevel = "Evolution",
+                        Colour = "Black",
+                        Odometer = 40000
+                    }
+                );
+
+                entity.HasData(
+                    new CodeFirstCar()
+                    {
+                        ID = 2,
+                        Manufacturer = "Honda",
+                        Model = "Civic",
+                        TrimLevel = "LX",
+                        Colour = "Red",
+                        Odometer = 110000
+                    },
+                    new CodeFirstCar()
+                    {
+                        ID = 3,
+                        Manufacturer = "Dodge",
+                        Model = "Stealth",
+                        TrimLevel = "R/T TT",
+                        Colour = "Blue",
+                        Odometer = 98500
+                    }
+                 );
             });
 
             // Call the partial method in case we add some stuff to another file later.
