@@ -11,6 +11,8 @@ namespace _4Point1_EF.Models
     [Table("code_first_car")]
     public partial class CodeFirstCar
     {
+        // All annotations will bind to the next property in the file.
+
         // Declare a primary key.
         [Key]
         // Specifies AUTO_INCREMENT.
