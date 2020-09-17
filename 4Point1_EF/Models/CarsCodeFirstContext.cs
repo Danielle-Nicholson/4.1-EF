@@ -18,6 +18,10 @@ namespace _4Point1_EF.Models
 
         }
 
+        // These properties allow the context to be read and written to.
+        public virtual DbSet<CodeFirstCar> Cars { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+
         // Called when we're configuring a database connection.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -69,11 +73,8 @@ namespace _4Point1_EF.Models
             modelBuilder.Entity<CodeFirstCar>(entity =>
             {
                 // If you have foreign keys, declare them here as "HasIndex".
-
-                // Declare the string encoding for our text fields.
-                entity.Property(e => e.Manufacturer)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_general_ci");
+                entity.HasIndex(e => e.ManufacturerID)
+                    .HasName("FK_CodeFirstCar_Manufacturer");
 
                 // PLEASE don't try to memorize this. Copy/paste it and change the column name.
                 entity.Property(e => e.Model)
@@ -89,6 +90,18 @@ namespace _4Point1_EF.Models
                     .HasCollation("utf8mb4_general_ci");
 
 
+                // Enforce the Foreign Key
+                // Specify the relationship between the child and parent
+                entity.HasOne(child => child.ManufacturerRed)
+                // Specify the relationship between the parent and child(ren)
+                    .WithMany(parent => parent.Cars)
+                // Specify the property acting as the foreign key
+                    .HasForeignKey(child => child.ManufacturerID)
+                // Specify delete behaviour
+                    .OnDelete(DeleteBehavior.Restrict)
+                // Name the foreign key
+                    .HasConstraintName("FK_CodeFirstCar_Manufacturer");
+
                 // Generate a random set of data for seeding. Note that this method is only run when "dotnet ef migrations add" is run, so therefore the random set of data will persist if a migration is reverted and reapplied. If you want a new dataset, remove the migration and recreate it (AFTER you've rolled back the migration that added it to the database).
                 string[] makes = new string[] { "Chevrolet", "Dodge", "Ford" };
                 string[] models = new string[] { "Corvette", "Durango", "Fusion" };
@@ -100,7 +113,7 @@ namespace _4Point1_EF.Models
                     cars.Add(new CodeFirstCar()
                     {
                         ID = i,
-                        Manufacturer = makes[rng.Next(0, 3)],
+                        ManufacturerID = 1,
                         Model = models[rng.Next(0, 3)],
                         TrimLevel = trims[rng.Next(0, 3)],
                         Colour = "Black",

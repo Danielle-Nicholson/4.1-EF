@@ -7,24 +7,6 @@ namespace _4Point1_EF
     {
         static void Main(string[] args)
         {
-            /* In-Class Practice
-             
-            -Perform this database setup in a new project with a "Manufacturer" table.
-            -Properties:
-                -ID (id, int(10), primary key, auto increment)
-                -Name (varchar(30), not null)
-                -YearFounded (int(10), null)
-             -Seed Data (Null founded date if not specified):
-                -Chevrolet, 1911
-                -Ford, 1903
-                -Tesla
-                -Dodge
-                -Toyota, 1937
-                -Honda, 1946
-                -Mitsubishi
-                -Nissan
-             */
-
             // Using "Code First" techniques allow us to make changes and even create entire databases without writing a single line of SQL.
             /*
 
@@ -50,6 +32,7 @@ namespace _4Point1_EF
                 4c) Declare foreign keys (if applicable).
             5) Modify context OnModelCreating to represent the models that you created.
                 5a) Add a modelBuild.Entity<MODEL_NAME>() call for each model that will set things like the foreign key mapping and the text encoding.
+            6) Add DbSet properties to the context.
 
             Migrations are used to keep the database in sync with the models. Whenever you change the context or models, a migration will likely be necessary.
 
@@ -74,6 +57,17 @@ namespace _4Point1_EF
             Ensure that the database has been rolled back to before the migration to be removed before removing it.
 
             UNDER NO CIRCUMSTANCES SHOULD YOU MODIFY THE Down() METHOD OF A MIGRATION THAT HAS BEEN APPLIED TO THE DATABASE. IF YOU MUST, ROLL IT BACK FIRST.
+
+            Foreign Keys:
+            (In the file containing the foreign key)
+            -Ensure that the foriegn key property is present (as a normal field)
+            -Add a virtual foreign key property to the bottom of the file.
+            (In the file the foreign key points to)
+            -Add an inverse list virtual foreign key property.
+            (In the context)
+            -Update the context to enforce the constraint.
+                -Add the entity.HasX() calls
+                -Add the entity.HasIndex() call(s)
             */
         }
     }
