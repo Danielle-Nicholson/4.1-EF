@@ -13,7 +13,7 @@ namespace _4Point1_EF.Models
     {
         // Declare a primary key.
         [Key]
-        // AUTO_INCREMENT (according to Google, we'll find out).
+        // Specifies AUTO_INCREMENT.
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         // Declare the column name and the data type.
         // MySQL data type, NOT C# data type.
