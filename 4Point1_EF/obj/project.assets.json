@@ -907,9 +907,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\4Point1_EF.csproj",
-      "projectName": "4Point1_EF",
-      "projectPath": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\4Point1_EF.csproj",
+      "projectUniqueName": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\ExistingDBPractice.csproj",
+      "projectName": "ExistingDBPractice",
+      "projectPath": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\ExistingDBPractice.csproj",
       "packagesPath": "C:\\Users\\Jameson\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\obj\\",
       "projectStyle": "PackageReference",
