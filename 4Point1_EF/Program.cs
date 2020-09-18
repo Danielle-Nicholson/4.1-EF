@@ -23,6 +23,8 @@ namespace _4Point1_EF
                     -EndDate
             */
 
+            // In class practice: Add a method to the EmployeeController that will get an employee by their ID.
+
             string name;
             string location;
 
