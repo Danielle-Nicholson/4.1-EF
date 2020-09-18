@@ -55,18 +55,15 @@ namespace CodeFirstPractice.Models
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 
-                /*
+ 
                 entity.HasData(
-                    new Manufacturer() { ID = 1, Name = "Chevrolet", YearFounded = 1911 },
-                    new Manufacturer() { ID = 2, Name = "Ford", YearFounded = 1903 },
-                    new Manufacturer() { ID = 3, Name = "Tesla", YearFounded = null },
-                    new Manufacturer() { ID = 4, Name = "Dodge", YearFounded = null },
-                    new Manufacturer() { ID = 5, Name = "Toyota", YearFounded = 1937 },
-                    new Manufacturer() { ID = 6, Name = "Honda", YearFounded = 1946 },
-                    new Manufacturer() { ID = 7, Name = "Mitsubishi", YearFounded = null },
-                    new Manufacturer() { ID = 8, Name = "Nissan", YearFounded = null }
+                    new Shelves() { ID = -1, Name = "Tools Shelf"},
+                    new Shelves() { ID = -2, Name = "Electronics Shelf" },
+                    new Shelves() { ID = -3, Name = "Food Shelf" },
+                    new Shelves() { ID = -4, Name = "Dishes Shelf" },
+                    new Shelves() { ID = -5, Name = "Book Shelf" }
                     );
-                */
+
             });
 
 

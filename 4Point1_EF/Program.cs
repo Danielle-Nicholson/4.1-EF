@@ -33,6 +33,10 @@ namespace CodeFirstPractice
         {
             using (ShelvesContext context = new ShelvesContext())
             {
+                if (context.Shelves.Where(x => x.Name == name.Trim()).Count() != 0)
+                {
+                    throw new Exception("That shelf already exists.");
+                }
                 context.Shelves.Add(new Shelves() { Name = name.Trim() });
                 context.SaveChanges();
             }
