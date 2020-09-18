@@ -29,6 +29,7 @@ namespace ExistingDBPractice
 
             string firstName = "", lastName = null;
             List<string> phoneNumbers = new List<string>();
+            List<string> emails = new List<string>();
 
             
 
@@ -63,8 +64,8 @@ namespace ExistingDBPractice
                             .Select(x => x.Number)
                             // Convert to list.
                             .ToList();
-            
 
+                        emails = context.Emails.Where(x => x.Person.FirstName.ToUpper() == firstName.ToUpper()).Select(x => x.Email).ToList();
                         
                         /*
                         // var test = context.PhoneNumbers;
@@ -100,6 +101,10 @@ namespace ExistingDBPractice
                 foreach (string number in phoneNumbers)
                 {
                     Console.WriteLine($"Phone Number: {number}");
+                }
+                foreach (string email in emails)
+                {
+                    Console.WriteLine($"Email Address: {email}");
                 }
             }
         }

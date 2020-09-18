@@ -18,6 +18,8 @@ namespace ExistingDBPractice.Models
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<PhoneNumber> PhoneNumbers { get; set; }
 
+        public virtual DbSet<EmailAddress> Emails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -54,6 +56,55 @@ namespace ExistingDBPractice.Models
                     .HasForeignKey(d => d.PersonID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PhoneNumber_Person");
+            });
+
+            modelBuilder.Entity<EmailAddress>(entity =>
+            {
+                entity.HasIndex(e => e.PersonID)
+                    .HasName("FK_EmailAddress_Person");
+
+                entity.Property(e => e.Email)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
+                entity.HasOne(d => d.Person)
+                    .WithMany(p => p.Emails)
+                    .HasForeignKey(d => d.PersonID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmailAddress_Person");
+
+                entity.HasData(
+                        new EmailAddress()
+                        {
+                            ID = 1,
+                            Email = "johndoe@email.com",
+                            PersonID = 1
+                        },
+                        new EmailAddress()
+                        {
+                            ID = 2,
+                            Email = "janedoe@email.com",
+                            PersonID = 2
+                        },
+                        new EmailAddress()
+                        {
+                            ID = 3,
+                            Email = "tommywiseau@theroom.com",
+                            PersonID = 3
+                        },
+                        new EmailAddress()
+                        {
+                            ID = 4,
+                            Email = "jimmysmith@email.com",
+                            PersonID = 4
+                        },
+                        new EmailAddress()
+                        {
+                            ID = 5,
+                            Email = "sallysmith@email.com",
+                            PersonID = 5
+                        }
+                    );
             });
 
             OnModelCreatingPartial(modelBuilder);

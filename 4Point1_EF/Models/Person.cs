@@ -11,6 +11,7 @@ namespace ExistingDBPractice.Models
         public Person()
         {
             PhoneNumbers = new HashSet<PhoneNumber>();
+            Emails = new HashSet<EmailAddress>();
         }
 
         [Key]
@@ -25,5 +26,8 @@ namespace ExistingDBPractice.Models
 
         [InverseProperty(nameof(Models.PhoneNumber.Person))]
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
+
+        [InverseProperty(nameof(Models.EmailAddress.Person))]
+        public virtual ICollection<EmailAddress> Emails { get; set; }
     }
 }
