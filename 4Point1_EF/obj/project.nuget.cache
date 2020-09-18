@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WrqAnjLLU/DiUaN4qLvCdD5jFmt8TzSimsXA4G9SwDqwQkHJQd1Dsp7arc9rcjuNtNztXwFqvFEs4vZz6ZhWOA==",
+  "dgSpecHash": "uDMLIwIQA32a4mdIkr2ce0w8qVzNH0CdAH8V8xWLfDF76BwUTGHEN5qxVNlPdEASsXRekNGyQf1vcqNDhyPZ/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\4Point1_EF.csproj",
+  "projectFilePath": "C:\\Users\\Jameson\\source\\repos\\4.1-EF\\4Point1_EF\\CodeFirstPractice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jameson\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Jameson\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
