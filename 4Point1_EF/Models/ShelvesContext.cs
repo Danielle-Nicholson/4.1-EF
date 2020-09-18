@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Codee.Models
+namespace CodeFirstPractice.Models
 {
     public partial class ShelvesContext : DbContext
     {
