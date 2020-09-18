@@ -64,6 +64,7 @@ namespace _4Point1_EF
             -Add a virtual foreign key property to the bottom of the file.
             (In the file the foreign key points to)
             -Add an inverse list virtual foreign key property.
+            -Add a constructor that initializes a empty hashset for the virtual property.
             (In the context)
             -Update the context to enforce the constraint.
                 -Add the entity.HasX() calls
