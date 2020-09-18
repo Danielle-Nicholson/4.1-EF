@@ -1,4 +1,5 @@
 ﻿using _4Point1_EF.Models;
+using _4Point1_EF.Controllers;
 using System;
 using System.Linq;
 
@@ -27,30 +28,17 @@ namespace _4Point1_EF
 
             Console.Write("Please enter a Full Name: ");
             name = Console.ReadLine().Trim().ToUpper();
-            try
-            {
-                using (EmployeeContext context = new EmployeeContext())
-                {
-                    string firstName = name.Split(' ')[0];
-                    string lastName = name.Split(' ')[1];
-                    // Single will throw an Exception if there is not only one item in a collection.
-                    // SingleOrDefault will return null if there is not only one.
-                    Employee target = context.Employees.Where(x => x.FirstName == firstName && x.LastName == lastName).Single();
 
-                    // Until we convert to a list, we are operating on a DbSet collection.
-                    // DbSets require all operations performed thereon to have a direct translation to SQL.
-                    // Since Contains() does not (it should translate to IN but I digress), we have to pull the full table and evaluate on our server instead of the database.
-                    // Converting the DbSet to a List will force evaluation of the DbSet as-is, we can then query the list as if they were normal objects.
-                    Location work = context.Locations.ToList().Where(x => x.Employees.Contains(target)).Single();
+            EmployeeController employeeController = new EmployeeController();
+            Employee target = employeeController.GetEmployee(name.Split(' ')[0], name.Split(' ')[1]);
 
-                    location = $"{work.Name} - {work.Address} {work.PostalCode}, {work.City}";
-                    Console.WriteLine($"That person works at {location}.");
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Encountered Exception: " + e.Message);
-            }
+            LocationController locationController = new LocationController();
+            Location work = locationController.GetLocationFromEmployee(target.ID);
+
+            Console.WriteLine($"{target.FirstName} {target.LastName} works at {work.Name} - {work.Address} {work.PostalCode}, {work.City}.");
+
+
+            
         }
     }
 }
