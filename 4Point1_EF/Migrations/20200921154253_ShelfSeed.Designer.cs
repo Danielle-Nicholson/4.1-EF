@@ -2,14 +2,16 @@
 using CodeFirstPractice.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace _4Point1_EF.Migrations
 {
     [DbContext(typeof(ShelfContext))]
-    partial class ShelvesContextModelSnapshot : ModelSnapshot
+    [Migration("20200921154253_ShelfSeed")]
+    partial class ShelfSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

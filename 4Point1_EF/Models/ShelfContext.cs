@@ -98,15 +98,20 @@ namespace CodeFirstPractice.Models
                 // Name the foreign key
                     .HasConstraintName("FK_"+nameof(Shelf)+"_"+nameof(ShelfMaterial));
 
-                /*
+           
                 entity.HasData(
-                    new Shelf() { ID = -1, Name = "Tools Shelf"},
-                    new Shelf() { ID = -2, Name = "Electronics Shelf" },
-                    new Shelf() { ID = -3, Name = "Food Shelf" },
-                    new Shelf() { ID = -4, Name = "Dishes Shelf" },
-                    new Shelf() { ID = -5, Name = "Book Shelf" }
-                    );
-                    */
+                    new Shelf() { ID = -1, Name = "Tools Shelf", MaterialID = -2},
+                    new Shelf() { ID = -2, Name = "Electronics Shelf", MaterialID = -3 },
+                    new Shelf() { ID = -3, Name = "Food Shelf", MaterialID = -1 },
+                    new Shelf() { ID = -4, Name = "Dishes Shelf", MaterialID = -1 },
+                    new Shelf() { ID = -5, Name = "Book Shelf", MaterialID = -1 },
+                    new Shelf() { ID = -6, Name = "Plant Shelf", MaterialID = -1 },
+                    new Shelf() { ID = -7, Name = "Cactus Shelf", MaterialID = -1 },
+                    new Shelf() { ID = -8, Name = "Pet Food Shelf", MaterialID = -3 },
+                    new Shelf() { ID = -9, Name = "Lego Shelf", MaterialID = -3 },
+                    new Shelf() { ID = -10, Name = "Magazine Shelf", MaterialID = -1 }
+                );
+       
             });
 
 
