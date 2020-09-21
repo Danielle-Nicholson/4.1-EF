@@ -9,19 +9,25 @@ namespace CodeFirstPractice
         static void Main(string[] args)
         {
             /*
-             Create models and a context for a simple database with the following:
-             A table called “Shelves” with:
-                 An int primary key called ID.
-                 A varchar of length 50 called Name.
-             Use Entity Framework to create a database called “code_first_practice” using your models.
-             This must be done in a migration.
+            A parameter for “shelfMaterial”
+                Ensure the material exists in the “ShelfMaterial” table
+                if material does not exist, let the user know and exit.
+                “shelfMaterial” parameter should be case insensitive.
+                “shelfMaterial” parameter should be trimmed.
+                When you add the new shelf, ensure the foreign key for “ShelfMaterial” is populated correctly.
 
-             Write a program that will take in a shelf name and add it to the database. For example, CreateShelf(“Games Shelf”) or AddShelf(“Movies Shelf”).
              */
+            string name, material;
+
             Console.Write("Please enter the name of the shelf to add: ");
+            name = Console.ReadLine();
+
+            Console.Write("Please enter the name of the shelf material: ");
+            material = Console.ReadLine();
+
             try
             {
-                AddShelf(Console.ReadLine());
+                AddShelf(name, material);
             }
             catch (Exception e)
             {
@@ -29,15 +35,22 @@ namespace CodeFirstPractice
             }
 
         }
-        public static void AddShelf(string name)
+        public static void AddShelf(string name, string materialName)
         {
-            using (ShelvesContext context = new ShelvesContext())
+            using (ShelfContext context = new ShelfContext())
             {
                 if (context.Shelves.Where(x => x.Name.ToUpper() == name.Trim().ToUpper()).Count() != 0)
                 {
                     throw new Exception("That shelf already exists.");
                 }
-                context.Shelves.Add(new Shelves() { Name = name.Trim() });
+                IQueryable<ShelfMaterial> matchingMaterials = context.ShelfMaterials.Where(x => x.MaterialName.ToUpper() == materialName.Trim().ToUpper());
+                if (matchingMaterials.Count() == 0)
+                {
+                    throw new Exception("That material does not exist.");
+                }
+
+                context.Shelves.Add(new Shelf() { Name = name.Trim(), Material = matchingMaterials.First() });
+
                 context.SaveChanges();
             }
         }

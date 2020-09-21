@@ -5,20 +5,21 @@ using System.Text;
 
 namespace CodeFirstPractice.Models
 {
-    public partial class ShelvesContext : DbContext
+    public partial class ShelfContext : DbContext
     {
-        public ShelvesContext()
+        public ShelfContext()
         {
 
         }
 
-        public ShelvesContext(DbContextOptions<ShelvesContext> options) : base(options)
+        public ShelfContext(DbContextOptions<ShelfContext> options) : base(options)
         {
 
         }
 
         // These properties allow the context to be read and written to.
-        public virtual DbSet<Shelves> Shelves { get; set; }
+        public virtual DbSet<Shelf> Shelves { get; set; }
+        public virtual DbSet<ShelfMaterial> ShelfMaterials { get; set; }
 
         // Called when we're configuring a database connection.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -49,21 +50,63 @@ namespace CodeFirstPractice.Models
         // Called when we're doing database migrations, etc.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Shelves>(entity =>
+            modelBuilder.Entity<ShelfMaterial>(entity =>
             {
+                entity.Property(e => e.MaterialName)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
+
+                
+                entity.HasData(
+                    new ShelfMaterial()
+                    {
+                        ID = -1,
+                        MaterialName = "Wood"
+                    },
+                    new ShelfMaterial()
+                    {
+                        ID = -2,
+                        MaterialName = "Steel"
+                    },
+                    new ShelfMaterial()
+                    {
+                        ID = -3,
+                        MaterialName = "Plastic"
+                    }
+                );
+                    
+            });
+
+            modelBuilder.Entity<Shelf>(entity =>
+            {
+                entity.HasIndex(e => e.MaterialID)
+                   .HasName("FK_" + nameof(Shelf) + "_" + nameof(ShelfMaterial));
+
                 entity.Property(e => e.Name)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_general_ci");
 
- 
-                entity.HasData(
-                    new Shelves() { ID = -1, Name = "Tools Shelf"},
-                    new Shelves() { ID = -2, Name = "Electronics Shelf" },
-                    new Shelves() { ID = -3, Name = "Food Shelf" },
-                    new Shelves() { ID = -4, Name = "Dishes Shelf" },
-                    new Shelves() { ID = -5, Name = "Book Shelf" }
-                    );
+                // Enforce the Foreign Key
+                // Specify the relationship between the child and parent
+                entity.HasOne(child => child.Material)
+                // Specify the relationship between the parent and child(ren)
+                    .WithMany(parent => parent.Shelves)
+                // Specify the property acting as the foreign key
+                    .HasForeignKey(child => child.MaterialID)
+                // Specify delete behaviour
+                    .OnDelete(DeleteBehavior.Restrict)
+                // Name the foreign key
+                    .HasConstraintName("FK_"+nameof(Shelf)+"_"+nameof(ShelfMaterial));
 
+                /*
+                entity.HasData(
+                    new Shelf() { ID = -1, Name = "Tools Shelf"},
+                    new Shelf() { ID = -2, Name = "Electronics Shelf" },
+                    new Shelf() { ID = -3, Name = "Food Shelf" },
+                    new Shelf() { ID = -4, Name = "Dishes Shelf" },
+                    new Shelf() { ID = -5, Name = "Book Shelf" }
+                    );
+                    */
             });
 
 

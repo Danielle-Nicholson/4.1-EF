@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace _4Point1_EF.Migrations
 {
     [DbContext(typeof(ShelfContext))]
-    [Migration("20200918162258_SeedData")]
-    partial class SeedData
+    [Migration("20200921151016_ShelvesToShelf")]
+    partial class ShelvesToShelf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace _4Point1_EF.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("CodeFirstPractice.Models.Shelves", b =>
+            modelBuilder.Entity("CodeFirstPractice.Models.Shelf", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace _4Point1_EF.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("shelves");
+                    b.ToTable("shelf");
 
                     b.HasData(
                         new

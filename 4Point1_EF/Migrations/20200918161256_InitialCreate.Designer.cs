@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace _4Point1_EF.Migrations
 {
-    [DbContext(typeof(ShelvesContext))]
+    [DbContext(typeof(ShelfContext))]
     [Migration("20200918161256_InitialCreate")]
     partial class InitialCreate
     {

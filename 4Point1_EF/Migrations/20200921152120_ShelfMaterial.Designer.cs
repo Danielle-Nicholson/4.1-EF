@@ -2,14 +2,16 @@
 using CodeFirstPractice.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace _4Point1_EF.Migrations
 {
     [DbContext(typeof(ShelfContext))]
-    partial class ShelvesContextModelSnapshot : ModelSnapshot
+    [Migration("20200921152120_ShelfMaterial")]
+    partial class ShelfMaterial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,23 +61,6 @@ namespace _4Point1_EF.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("shelfmaterial");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = -1,
-                            MaterialName = "Wood"
-                        },
-                        new
-                        {
-                            ID = -2,
-                            MaterialName = "Steel"
-                        },
-                        new
-                        {
-                            ID = -3,
-                            MaterialName = "Plastic"
-                        });
                 });
 
             modelBuilder.Entity("CodeFirstPractice.Models.Shelf", b =>
